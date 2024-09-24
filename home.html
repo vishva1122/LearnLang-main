@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to La-Beluga, A fun laguage learning app!</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html"class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    
+    <div class="page-wrap">
+        <!-- Cartoon image -->
+        <img src="cartoon-language.png" alt="Cartoon characters learning languages" style="display:block; margin:auto; width: 300px;">
+        
+        <h2>Lesson 1</h2>
+        <p>What is the translation for "Hello" in Spanish?</p>
+        <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Bonjour</button>
+        <button class="option" onclick="checkAnswer('lesson1', 'correct')">Hola</button>
+        <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Hallo</button>
+        <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Ciao</button>
+        <p id="result-lesson1"></p>
+        
+        <p id="progress-display">Progress: <span id="progress-value">0</span>%</p>
+        <button id="next-lesson" onclick="showNextLesson()" style="display: none;">Next Lesson</button>
+        <button onclick="resetProgress()">Reset Progress</button>
+    </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Five Angstrom LLP</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
