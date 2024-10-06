@@ -7,15 +7,37 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #e3f2fd; /* Light blue background */
-  color: #0d47a1; /* Dark blue text */
-  line-height: 1.6;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   margin: 0;
+  height: 100vh; /* Full height of the viewport */
+  font-family: 'Arial', sans-serif;
+  background-color: #e3f2fd; 
+  color: #0d47a1;
+  line-height: 1.6;
+  /* font-size: 20px; */
 }
+
+.container {
+  display: flex;
+  justify-content: space-between; /* Distributes space between children */
+  width: 80%; /* Adjust based on your design */
+}
+
+.page-wrap {
+  flex: 0 0 60%; /* Allows this to take available space */
+  margin-right: 20px; /* Space between the two containers */
+  text-align: center; /* Center text in the page-wrap */
+  margin-left: 250px;
+}
+
+audio{
+  margin-top: 20px;
+  width: 300px; /* You can adjust the width */
+}
+
 
 .container {
   max-width: 1200px; /* Center content with max width */
@@ -221,3 +243,59 @@ body {
   width: 300px;  /* Desired width */
   height: 300px; /* Desired height */
 }
+
+
+#animation-container {
+  flex: 0 0 30%; /* Allows this to take available space */
+  display: flex;
+  flex-direction: column; /* Aligns children vertically */
+  align-items: center; /* Centers children horizontally */
+  justify-content: center; /* Centers children vertically */
+}
+
+#forest-animation,
+#ds2-animation,
+#ds-animation {
+  width: 100%; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+  /* Forest animation */
+  #forest-animation {
+      width: 100%; /* Full width */
+      height: auto;
+  }
+
+  /* DS animations */
+  #ds-animation, #ds2-animation {
+      position: absolute;
+      width: 30%;
+      height: auto;
+      right: 10px;
+  }
+
+  /* Place DS2 above DS */
+  #ds2-animation {
+      bottom: 100px; /* Positioned above DS */
+  }
+
+  #ds-animation {
+      bottom: 10px; /* Positioned at the bottom */
+  }
+
+
+#animated-text {
+      /* position: absolute; */
+      top: 20px; /* Position text at the top */
+      width: 100%;
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+      z-index: 1000; /* Ensure text is on top */
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for contrast */
+      padding: 10px; /* Padding around the text */
+      opacity: 0;
+      animation: fadeIn 3s forwards; /* Fade-in animation */
+  }

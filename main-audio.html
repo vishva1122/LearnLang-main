@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Multiple Audios with Lottie Animations</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <style>
+        /* Container for the animations */
+        #animation-container {
+            position: relative;
+            width: 100%; /* Set width to full of the viewport */
+            height: 100vh; /* Full height of the viewport */
+            display: flex;
+            justify-content: center; /* Center animations horizontally */
+            align-items: center; /* Center animations vertically */
+            overflow: hidden;
+        }
+
+        /* Forest animation */
+        #forest-animation {
+            width: 100%; /* Full width */
+            height: auto;
+        }
+
+        /* DS animations */
+        #ds-animation, #ds2-animation {
+            position: absolute;
+            width: 30%;
+            height: auto;
+            right: 10px;
+        }
+
+        /* Place DS2 above DS */
+        #ds2-animation {
+            bottom: 100px; /* Positioned above DS */
+        }
+
+        #ds-animation {
+            bottom: 10px; /* Positioned at the bottom */
+        }
+
+
+#animated-text {
+            position: absolute;
+            top: 20px; /* Position text at the top */
+            width: 100%;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            z-index: 1000; /* Ensure text is on top */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for contrast */
+            padding: 10px; /* Padding around the text */
+            opacity: 0;
+            animation: fadeIn 3s forwards; /* Fade-in animation */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- First Audio element (for DS1.json) -->
+    <audio id="audio1" controls>
+        <source src="DS-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Second Audio element (for DS2.json) -->
+    <audio id="audio2" controls>
+        <source src="DS-2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Animation container -->
+    <div id="animation-container">
+        <!-- Animated Text -->
+        <div id="animated-text">Geoclock</div>
+	<!-- Forest animation -->
+        <div id="forest-animation"></div>
+
+        <!-- DS2 animation (above DS1.json) -->
+        <div id="ds2-animation"></div>
+
+        <!-- DS animation -->
+        <div id="ds-animation"></div>
+    </div>
+
+    <script>
+        // Get the audio elements
+        var audio1 = document.getElementById('audio1');
+        var audio2 = document.getElementById('audio2');
+
+        // Variables for DS animations
+        var dsAnimation, ds2Animation;
+
+        // Add a click event listener to trigger animations and audio
+        window.addEventListener('click', function() {
+            // Remove the event listener after first click to avoid multiple triggers
+            window.removeEventListener('click', arguments.callee);
+
+            // Load forest animation
+            var forestAnimation = lottie.loadAnimation({
+                container: document.getElementById('forest-animation'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'forest.json'  // Path to forest.json file
+            });
+
+            // Load and play DS1 animation and sync with first audio
+            dsAnimation = lottie.loadAnimation({
+                container: document.getElementById('ds-animation'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'DS.json'  // Path to DS1.json file
+            });
+
+            dsAnimation.addEventListener('DOMLoaded', function() {
+                audio1.currentTime = 0; // Reset first audio
+                audio1.play(); // Play first audio when DS1 animation starts
+            });
+
+            // Load DS2 animation after DS1 has started and sync with second audio
+            setTimeout(function() {
+                ds2Animation = lottie.loadAnimation({
+                    container: document.getElementById('ds2-animation'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: false, // Will start manually when audio2 plays
+                    path: 'DS2.json'  // Path to DS2.json file
+                });
+
+                // Play DS2 animation when audio2 starts
+                audio2.addEventListener('play', function() {
+                    ds2Animation.goToAndPlay(0, true); // Start DS2 animation
+                });
+
+                // Play second audio after DS2 animation loads
+                ds2Animation.addEventListener('DOMLoaded', function() {
+                    audio2.currentTime = 0; // Reset second audio
+                    audio2.play(); // Start second audio
+                });
+            }, 2000); // Start DS2 after a 2-second delay
+        });
+
+    </script>
+
+</body>
+</html>

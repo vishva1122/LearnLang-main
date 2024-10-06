@@ -1,42 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn a New Language</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
-    
+
+
 </head>
+
 <body>
+
     <header>
         <h1>Welcome to La-Beluga, A fun laguage learning app!</h1>
         <nav>
             <ul>
-                <li><a href="home.html"class="active">Home</a></li>
+                <li><a href="home.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="games.html">Games</a></li>
                 <li><a href="contact.html">Contact</a></li>
-            </ul> 
+            </ul>
         </nav>
     </header>
+    <audio id="audio1" controls>
+        <source src="DS-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Second Audio element (for DS2.json) -->
+    <audio id="audio2" controls>
+        <source src="DS-2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Animation container -->
     
+
+    <div id="audio">
+        <h1>My Audio Player</h1>
+        <audio controls>
+            <source src="DS-2.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <div id="lottie"></div>
-    <div class="page-wrap">
-        <!-- Cartoon image -->
-        <img src="cartoon-language.png" alt="Cartoon characters learning languages" style="display:block; margin:auto; width: 300px;">
-        
-        <h2>Lesson 1</h2>
-        <p>What is the translation for "Hello" in Spanish?</p>
-        <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Bonjour</button>
-        <button class="option" onclick="checkAnswer('lesson1', 'correct')">Hola</button>
-        <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Hallo</button>
-        <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Ciao</button>
-        <p id="result-lesson1"></p>
-        
-        <p id="progress-display">Progress: <span id="progress-value">0</span>%</p>
-        <button id="next-lesson" onclick="showNextLesson()" style="display: none;">Next Lesson</button>
-        <button onclick="resetProgress()">Reset Progress</button>
+    <div class="container">
+        <div class="page-wrap">
+            <!-- Cartoon image -->
+            <img src="cartoon-language.png" alt="Cartoon characters learning languages" style="display:block; margin:auto; width: 300px;">
+            <h2>Lesson 1</h2>
+            <p>What is the translation for "Hello" in Spanish?</p>
+            <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Bonjour</button>
+            <button class="option" onclick="checkAnswer('lesson1', 'correct')">Hola</button>
+            <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Hallo</button>
+            <button class="option" onclick="checkAnswer('lesson1', 'wrong')">Ciao</button>
+            <p id="result-lesson1"></p>
+            <p id="progress-display">Progress: <span id="progress-value">0</span>%</p>
+            <button id="next-lesson" onclick="showNextLesson()" style="display: none;">Next Lesson</button>
+            <button onclick="resetProgress()">Reset Progress</button>
+            
+           
+        </div>
+    
+        <div id="animation-container">
+            
+            <!-- Animated Text -->
+            <div id="animated-text">Geoclock</div>
+            <!-- Forest animation -->
+            <!-- <div id="forest-animation"></div> -->
+            <!-- DS2 animation -->
+            <div id="ds2-animation"></div>
+            <!-- DS animation -->
+            <div id="ds-animation"></div>
+        </div>
     </div>
 
     <footer class="site-footer">
@@ -45,5 +83,5 @@
 
     <script src="script.js"></script> <!-- JavaScript file linked here -->
 </body>
-</html>
 
+</html>
